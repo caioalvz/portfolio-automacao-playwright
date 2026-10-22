@@ -25,7 +25,7 @@ export class LoginPage{
     //NAVEGAR PARA TELA DE LOGIN
 
     async goto(){
-        await this.page.goto('https://alisonmelo.github.io/tioalison-pe-t4-fap26/projetos-base/01-sistema-login');
+        await this.page.goto('https://alisonmelo.github.io/tioalison-pe-t4-fap26/projetos-base/01-sistema-login/login.html');
     }
 
     //função/metodo/ação tela de login
