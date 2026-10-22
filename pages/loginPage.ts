@@ -1,0 +1,49 @@
+import {Page, Locator} from '@playwright/test';
+//RECEBER O PAGE NO CONSTRUCTOS
+//ENCAPSULA OS SELETORES/UI
+//MÉTODOS CLAROS EX: login(), fillEmail()...
+//MÉTODOS RETORAM OS LOCATORS PARA O TESTE APENAS FAZER O (ASSERT)
+//MELHOR PQ SE UM SELETOR MUDAR NO HTML SÓ ATUALIZAMOS EM UM ÚNICO LOCAL NO PAGE OPBJECT
+export class LoginPage{
+    //Locators
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly errorMessage: Locator;
+    readonly statusMessage: Locator;
+    readonly credentialsBox: Locator;
+
+    constructor(private page:Page){
+        this.emailInput = page.locator('#email');
+        this.passwordInput = page.locator('#password');
+        this.loginButton = page.locator('#loginBtn');
+        this.errorMessage = page.locator('#errorMessage');
+        this.statusMessage = page.locator('#statusMessage');
+        this.credentialsBox = page.locator('.credentials-info');
+    }
+
+    //NAVEGAR PARA TELA DE LOGIN
+
+    async goto(){
+        await this.page.goto('https://alisonmelo.github.io/tioalison-pe-t4-fap26/projetos-base/01-sistema-login');
+    }
+
+    //função/metodo/ação tela de login
+    async login(username: string, password: string){
+        await this.emailInput.fill(username);
+        await this.passwordInput.fill(password);
+        await this.loginButton.click();
+    }
+    //apenas preencher email
+    async fillEmail(email: string){
+        await this.emailInput.fill(email);
+    }
+    //apenas preencher senha
+    async fillPassword(password: string){
+        await this.passwordInput.fill(password);
+    }
+    //apenas clicar no bt de login
+    async clickSubmit(){
+        await this.loginButton.click();
+    }
+}
